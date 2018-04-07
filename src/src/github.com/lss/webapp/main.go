@@ -17,4 +17,5 @@ func main() {
 			io.Copy(w, f)
 		}
 	})
+	http.ListenAndServe(":8000", nil)
 }
