@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -15,6 +16,18 @@ func main() {
 			log.Println(err)
 		}
 		defer f.Close()
+		var contentType string
+		switch {
+		case strings.HasSuffix(r.URL.Path, "css"):
+			contentType = "text/css"
+		case strings.HasSuffix(r.URL.Path, "html"):
+			contentType = "text/html"
+		case strings.HasSuffix(r.URL.Path, "png"):
+			contentType = "image/png"
+		default:
+			contentType = "text/plain"
+		}
+		w.Header().Add("Content-Type", contentType)
 		io.Copy(w, f)
 	})
 	http.ListenAndServe(":8000", nil)
