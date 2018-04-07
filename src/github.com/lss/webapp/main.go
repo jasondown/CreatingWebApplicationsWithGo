@@ -3,8 +3,5 @@ package main
 import "net/http"
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		http.ServeFile(w, r, "src/CreatingWebApplicationsWithGo/public"+r.URL.Path)
-	})
-	http.ListenAndServe(":8000", nil)
+	http.ListenAndServe(":8000", http.FileServer(http.Dir("src/CreatingWebApplicationsWithGo/public")))
 }
