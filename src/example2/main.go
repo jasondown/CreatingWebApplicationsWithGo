@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"html/template"
+	"html/template" //"text/template" is another option
 	"os"
 )
 
