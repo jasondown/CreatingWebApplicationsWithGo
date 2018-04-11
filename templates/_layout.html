@@ -3,10 +3,12 @@
 <head>
 <title>Lemonade Stand Supply</title>
 <link href="/css/app.css" rel="stylesheet" />
+{{block "styles" .}}{{end}}
 </head>
 <body>
 	{{template "_header.html"}}
 	{{template "content"}}
-	{{template "_footer.html"}}
+    {{template "_footer.html"}}
+    {{block "scripts" .}}{{end}}
 </body>
 </html>
