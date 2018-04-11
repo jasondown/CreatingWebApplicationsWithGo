@@ -12,7 +12,7 @@ func main() {
 	templates := populateTemplates()
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		requestedFile := r.URL.Path[1:]
-		t := templates.Lookup(requestedFile + ".html")
+		t := templates[requestedFile+".html"]
 		if t != nil {
 			err := t.Execute(w, nil)
 			if err != nil {
