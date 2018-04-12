@@ -6,6 +6,8 @@ import (
 	"log"
 	"net/http"
 	"os"
+
+	"CreatingWebApplicationsWithGo/src/github.com/lss/webapp/viewmodel"
 )
 
 func main() {
@@ -13,8 +15,9 @@ func main() {
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		requestedFile := r.URL.Path[1:]
 		t := templates[requestedFile+".html"]
+		context := viewmodel.NewBase()
 		if t != nil {
-			err := t.Execute(w, nil)
+			err := t.Execute(w, context)
 			if err != nil {
 				log.Println(err)
 			}
